@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- * @author Alexey Shuvalov
- *         Created on 14.03.2015.
+ * @author Alexey Shuvalov Created on 14.03.2015.
  */
 public class Salad implements CookBook {
+
     private final CulinaryVegetable[] culinaryVegetables;
 
     public Salad() {
@@ -24,6 +24,14 @@ public class Salad implements CookBook {
         Arrays.sort(culinaryVegetables, new Comparator<CulinaryVegetable>() {
             @Override
             public int compare(CulinaryVegetable o1, CulinaryVegetable o2) {
+                if (o1 == null && o2 == null) {
+                    return 0;
+                }
+                if (o1 == null) {
+                    return 1;
+                } else if (o2 == null) {
+                    return -1;
+                }
                 return (int) (o1.getCalories() - o2.getCalories());
             }
         });
@@ -34,17 +42,21 @@ public class Salad implements CookBook {
     public double countCalories() {
         double totalCalories = 0;
         for (CulinaryVegetable culinaryVegetable : culinaryVegetables) {
-            totalCalories += culinaryVegetable.getCalories();
+            if (culinaryVegetable != null) {
+                totalCalories += culinaryVegetable.getCalories();
+            }
         }
         return totalCalories;
     }
 
     @Override
     public CulinaryVegetable[] findVegetablesByCaloriesRange(double min, double max) {
-        CulinaryVegetable[] foundVegetables = new CulinaryVegetable[4];
+        CulinaryVegetable[] foundVegetables = new CulinaryVegetable[culinaryVegetables.length];
         for (int i = 0; i < culinaryVegetables.length; i++) {
-            if ((culinaryVegetables[i].getCalories() >= min) && (culinaryVegetables[i].getCalories() <= max)) {
-                foundVegetables[i] = culinaryVegetables[i];
+            if (culinaryVegetables[i] != null) {
+                if ((culinaryVegetables[i].getCalories() >= min) && (culinaryVegetables[i].getCalories() <= max)) {
+                    foundVegetables[i] = culinaryVegetables[i];
+                }
             }
         }
         return foundVegetables;
@@ -58,13 +70,16 @@ public class Salad implements CookBook {
     public void addIngredient(CulinaryVegetable culinaryVegetable) {
         /**
          * @param culinaryVegetable vegetable to be added
-         * */
+         *
+         */
         culinaryVegetables[getCurrentPosition()] = culinaryVegetable;
     }
 
     public int getCurrentPosition() {
         for (int i = 0; i < culinaryVegetables.length; i++) {
-            if (culinaryVegetables[i] == null) return i;
+            if (culinaryVegetables[i] == null) {
+                return i;
+            }
         }
         return 0;
     }

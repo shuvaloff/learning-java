@@ -19,7 +19,7 @@ public class SaladChef {
         Potato potato = new Potato();
         Tomato tomato = new Tomato();
 
-        CulinaryVegetable[] ingredients = new CulinaryVegetable[4];
+        CulinaryVegetable[] ingredients = new CulinaryVegetable[4];        
         ingredients[0] = cucumber;
         ingredients[1] = onion;
         ingredients[2] = potato;
@@ -36,19 +36,19 @@ public class SaladChef {
         SaladUtils.showIngredients(salad.findVegetablesByCaloriesRange(30, 75));
 
         Salad newSalad = new Salad();
-
+        /* showing an example with null-checks implemented */
         CulinaryVegetable[] ingredientsForNewSalad = newSalad.getIngredients();
         newSalad.addIngredient(tomato);
         newSalad.addIngredient(onion);
         newSalad.addIngredient(potato);
         newSalad.addIngredient(cucumber);
+        
         System.out.println("\nThere are following vegetables in this salad: \n");
         SaladUtils.showIngredients(ingredientsForNewSalad);
-
-        for (int i = 0; i < newSalad.getCurrentPosition(); i++) {
-        /* fills the rest 96 positions of ingredientsForNewSalad array with 'onions' */
-            newSalad.addIngredient(onion);
-        }
-
+        System.out.println("\nTotal Calories in this salad: " + newSalad.countCalories() + " kcal.");
+        System.out.println("\nList of the vegetables sorted by Calories (ascending order): \n");
+        SaladUtils.showIngredients(newSalad.sortVegetablesByCalories());
+        System.out.println("\nThis salad contains the following vegetables (within 30..75 Calories range):\n");
+        SaladUtils.showIngredients(newSalad.findVegetablesByCaloriesRange(30, 75));
     }
 }
