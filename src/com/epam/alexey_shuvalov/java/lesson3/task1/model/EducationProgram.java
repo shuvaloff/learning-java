@@ -133,7 +133,7 @@ public class EducationProgram implements Trackable {
             } else {
                 endDateCalendar.add(Calendar.MINUTE, diffMinutes);
                 skipNonEducationHours(endDateCalendar);
-                programDuration = programDuration - diffMinutes;
+                programDuration -= diffMinutes;
             }
         }
         return endDateCalendar;

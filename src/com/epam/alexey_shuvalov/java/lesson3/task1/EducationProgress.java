@@ -5,12 +5,9 @@ import com.epam.alexey_shuvalov.java.lesson3.task1.model.EducationProgram;
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.Student;
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.Trackable;
 
-import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
-
 /**
  * @author Alexey Shuvalov
- *
+ * Task #1.
  */
 public class EducationProgress {
     public static void main(String[] args) {
@@ -37,76 +34,36 @@ public class EducationProgress {
     }
 
     public void shortReport(Trackable[] educationPrograms) {
-        Calendar current = Calendar.getInstance();
-        for (Trackable educationProgram : educationPrograms) {
-            if (educationProgram != null) {
-                if (educationProgram.getCompletionDate().before(current)) {
-                    long diff = EducationUtils.getDateDiff(educationProgram.getCompletionDate().getTime(), current.getTime(), TimeUnit.MILLISECONDS);
-                    System.out.print(educationProgram.getStudentName() + " (" + educationProgram.getProgramName() +
-                            ") - Education program is completed. The time has passed since completion: ");
-                    EducationUtils.printDateDiff(diff);
-                } else {
-                    long diff = EducationUtils.getDateDiff(current.getTime(), educationProgram.getCompletionDate().getTime(), TimeUnit.MILLISECONDS);
-                    System.out.print(educationProgram.getStudentName() + " (" + educationProgram.getProgramName() +
-                            ") - Education program is not completed. The time remaining until completion: ");
-                    EducationUtils.printDateDiff(diff);
-                }
-            }
-        }
+        EducationUtils.generateShortReport(educationPrograms);
     }
 
     public void fullReport(Trackable[] educationPrograms) {
-        Calendar current = Calendar.getInstance();
-        for (Trackable educationProgram : educationPrograms) {
-            if (educationProgram != null) {
-                if (educationProgram.getCompletionDate().before(current)) {
-                    long diff = EducationUtils.getDateDiff(educationProgram.getCompletionDate().getTime(), current.getTime(), TimeUnit.MILLISECONDS);
-                    System.out.format("\n%s has completed '%s' education program. Education hours were on weekdays from %s to %s.\n" +
-                                    "The total length of education program is %s hours. Start date is %s, and end date is %s.\n" +
-                                    "The time has passed since completion: ",
-                            educationProgram.getStudentName(), educationProgram.getProgramName(),
-                            educationProgram.getEducationHours()[0], educationProgram.getEducationHours()[1],
-                            educationProgram.getProgramLength(), educationProgram.getStartDate(),
-                            educationProgram.getEndDate());
-                    EducationUtils.printDateDiff(diff);
-                } else {
-                    long diff = EducationUtils.getDateDiff(current.getTime(), educationProgram.getCompletionDate().getTime(), TimeUnit.MILLISECONDS);
-                    System.out.format("\n%s is studying '%s' education program. Education hours are on weekdays from %s to %s.\n" +
-                                    "The total length of education program is %s hours. Start date is %s, and end date is %s.\n" +
-                                    "The time remaining until completion: ",
-                            educationProgram.getStudentName(), educationProgram.getProgramName(),
-                            educationProgram.getEducationHours()[0], educationProgram.getEducationHours()[1],
-                            educationProgram.getProgramLength(), educationProgram.getStartDate(),
-                            educationProgram.getEndDate());
-                    EducationUtils.printDateDiff(diff);
-                }
-            }
-        }
+        EducationUtils.generateFullReport(educationPrograms);
     }
 
     public Trackable[] startApplication() {
         Student firstStudent = new Student("Ivan", "Ivanov");
         Student secondStudent = new Student("Petr", "Petrov");
 
-        Course[] firstCourses = new Course[2];
-        firstCourses[0] = new Course("Java Servlets Technology", 16);
-        firstCourses[1] = new Course("Struts Framework", 24);
+        Course[] firstCourseScope = new Course[2];
+        firstCourseScope[0] = new Course("Java Servlets Technology", 16);
+        firstCourseScope[1] = new Course("Struts Framework", 24);
 
         EducationProgram firstEP = new EducationProgram(firstStudent);
-        firstEP.setCourseScope(firstCourses);
+        firstEP.setCourseScope(firstCourseScope);
         firstEP.setProgramName("J2EE Developer");
-        firstEP.setEducationCalendar(EducationUtils.convertStringToDateTime("16.03.2015 10:00:00"));
+        firstEP.setEducationCalendar(EducationUtils.convertStringToDateTime("17.03.2015 10:00:00"));
 
-        Course[] secondCourses = new Course[4];
-        secondCourses[0] = new Course("Java Overview", 8);
-        secondCourses[1] = new Course("JFC/Swing Library", 16);
-        secondCourses[2] = null;
-        secondCourses[3] = new Course("JDBC Technology", 16);
+        Course[] secondCourseScope = new Course[4];
+        secondCourseScope[0] = new Course("Java Overview", 8);
+        secondCourseScope[1] = new Course("JFC/Swing Library", 16);
+        secondCourseScope[2] = null;
+        secondCourseScope[3] = new Course("JDBC Technology", 16);
 
         EducationProgram secondEP = new EducationProgram(secondStudent);
-        secondEP.setCourseScope(secondCourses);
+        secondEP.setCourseScope(secondCourseScope);
         secondEP.setProgramName("Java Developer");
-        secondEP.setEducationCalendar(EducationUtils.convertStringToDateTime("14.03.2015 10:00:00"));
+        secondEP.setEducationCalendar(EducationUtils.convertStringToDateTime("15.03.2015 10:00:00"));
 
         Trackable[] educationPrograms = new EducationProgram[3];
         educationPrograms[0] = firstEP;
