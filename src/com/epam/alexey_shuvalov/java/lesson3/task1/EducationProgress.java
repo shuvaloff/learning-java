@@ -3,7 +3,7 @@ package com.epam.alexey_shuvalov.java.lesson3.task1;
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.Course;
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.EducationProgram;
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.Student;
-import com.epam.alexey_shuvalov.java.lesson3.task1.model.Traceable;
+import com.epam.alexey_shuvalov.java.lesson3.task1.model.Trackable;
 
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
@@ -36,9 +36,9 @@ public class EducationProgress {
         }
     }
 
-    public void shortReport(Traceable[] educationPrograms) {
+    public void shortReport(Trackable[] educationPrograms) {
         Calendar current = Calendar.getInstance();
-        for (Traceable educationProgram : educationPrograms) {
+        for (Trackable educationProgram : educationPrograms) {
             if (educationProgram != null) {
                 if (educationProgram.getCompletionDate().before(current)) {
                     long diff = EducationUtils.getDateDiff(educationProgram.getCompletionDate().getTime(), current.getTime(), TimeUnit.MILLISECONDS);
@@ -55,9 +55,9 @@ public class EducationProgress {
         }
     }
 
-    public void fullReport(Traceable[] educationPrograms) {
+    public void fullReport(Trackable[] educationPrograms) {
         Calendar current = Calendar.getInstance();
-        for (Traceable educationProgram : educationPrograms) {
+        for (Trackable educationProgram : educationPrograms) {
             if (educationProgram != null) {
                 if (educationProgram.getCompletionDate().before(current)) {
                     long diff = EducationUtils.getDateDiff(educationProgram.getCompletionDate().getTime(), current.getTime(), TimeUnit.MILLISECONDS);
@@ -84,7 +84,7 @@ public class EducationProgress {
         }
     }
 
-    public Traceable[] startApplication() {
+    public Trackable[] startApplication() {
         Student firstStudent = new Student("Ivan", "Ivanov");
         Student secondStudent = new Student("Petr", "Petrov");
 
@@ -108,7 +108,7 @@ public class EducationProgress {
         secondEP.setProgramName("Java Developer");
         secondEP.setEducationCalendar(EducationUtils.convertStringToDateTime("14.03.2015 10:00:00"));
 
-        Traceable[] educationPrograms = new EducationProgram[3];
+        Trackable[] educationPrograms = new EducationProgram[3];
         educationPrograms[0] = firstEP;
         educationPrograms[1] = null;
         educationPrograms[2] = secondEP;

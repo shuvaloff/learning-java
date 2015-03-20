@@ -9,7 +9,7 @@ import java.util.Date;
  * @author Alexey Shuvalov
  *
  */
-public class EducationProgram implements Traceable {
+public class EducationProgram implements Trackable {
     public static final int STARTING_HOUR_OF_EDUCATION_DAY = 10;
     public static final int ENDING_HOUR_OF_EDUCATION_DAY = 18;
     public String studentName;
@@ -23,12 +23,13 @@ public class EducationProgram implements Traceable {
     }
 
     public void setEducationCalendar(Date date) {
-        Calendar educationCalendar = Calendar.getInstance();
-        educationCalendar.setTime(date);
-        this.educationCalendar = educationCalendar;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        this.educationCalendar = calendar;
         setEndDate();
     }
 
+    @Override
     public Calendar getCompletionDate() {
         return completionDate;
     }
@@ -47,6 +48,7 @@ public class EducationProgram implements Traceable {
         this.studentName = student.toString();
     }
 
+    @Override
     public String getStudentName() {
         return studentName;
     }
@@ -55,14 +57,16 @@ public class EducationProgram implements Traceable {
         this.studentName = studentName;
     }
 
+    @Override
     public String getProgramName() {
         return programName;
     }
 
+    @Override
     public String[] getEducationHours() {
         String[] educationHours = new String[2];
-        educationHours[0] = Integer.valueOf(STARTING_HOUR_OF_EDUCATION_DAY).toString();
-        educationHours[1] = Integer.valueOf(ENDING_HOUR_OF_EDUCATION_DAY).toString();
+        educationHours[0] = Integer.toString(STARTING_HOUR_OF_EDUCATION_DAY);
+        educationHours[1] = Integer.toString(ENDING_HOUR_OF_EDUCATION_DAY);
         return educationHours;
     }
 
@@ -78,6 +82,7 @@ public class EducationProgram implements Traceable {
         this.courseScope = courseScope;
     }
 
+    @Override
     public long getProgramLength() {
         long programLength = 0;
         for (Course aCourseScope : courseScope) {
@@ -88,10 +93,12 @@ public class EducationProgram implements Traceable {
         return programLength;
     }
 
+    @Override
     public String getStartDate() {
         return EducationUtils.convertDateToString(educationCalendar.getTime());
     }
 
+    @Override
     public String getEndDate() {
         return EducationUtils.convertDateToString(completionDate.getTime());
     }
@@ -103,6 +110,14 @@ public class EducationProgram implements Traceable {
     }
 
     public Calendar calculateEndDate(Calendar endDateCalendar) {
+        /**
+         * Calculates endDateCalendar by looping through programDuration (in minutes) 
+         * over 'dead' calendar (where all fields are undefined). Adds minutes 
+         * within STARTING_HOUR_OF_EDUCATION_DAY .. ENDING_HOUR_OF_EDUCATION_DAY.
+         * 
+         * @param endDateCalendar is a copy of calendar with Start Date specified
+         * @return Calendar with education hours
+         */
         int programDuration = (int)getProgramLength() * 60;
         skipNonEducationHours(endDateCalendar);
         while (programDuration > 0) {
@@ -126,10 +141,13 @@ public class EducationProgram implements Traceable {
 
     private static void skipNonEducationHours(Calendar deadCalendar) {
         /**
-         * Sets all the educationCalendar field values outside of
+         * Sets all the educationCalendar field values (minutes) outside of
          * STARTING_HOUR_OF_EDUCATION_DAY..ENDING_HOUR_OF_EDUCATION_DAY range to undefined.
+         * 
          * This means that isSet() will return false for all the educationCalendar fields,
          * and the date and time calculations will treat the fields as if they had never been set.
+         * 
+         * @param deadCalendar 
          */
         int currentHour = deadCalendar.get(Calendar.HOUR_OF_DAY);
         if (currentHour < STARTING_HOUR_OF_EDUCATION_DAY) {
