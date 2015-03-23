@@ -11,6 +11,7 @@ import java.util.Date;
  * 
  */
 public class EducationCenter {
+    
     public static final int STARTING_HOUR_OF_EDUCATION_DAY = 10;
     public static final int ENDING_HOUR_OF_EDUCATION_DAY = 18;
     
@@ -45,7 +46,7 @@ public class EducationCenter {
             educationEndTime.clear(Calendar.MINUTE); // set all the time (minutes) to undefined -- cannot be used in time calculations
             long diffMillis = educationEndTime.getTimeInMillis() - endDateCalendar.getTimeInMillis(); // calculating difference between 10 and 18 hours in millis
             int diffMinutes = (int) (diffMillis / (1000 * 60)); // converting difference to minutes
-            if (programDuration < diffMinutes) { // if total program duratin is less then working hours of the day
+            if (programDuration < diffMinutes) { // if total program duration is less then working hours of the day
                 endDateCalendar.add(Calendar.MINUTE, programDuration); // then add whole programDuration and exit loop
                 break;
             } else {

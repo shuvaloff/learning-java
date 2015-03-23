@@ -11,7 +11,6 @@ public interface Trackable {
     String getProgramName();
     String getStartDate();
     String getEndDate();
-    String[] getEducationHours();
     long getProgramLength();
     Calendar getEndDateCalendar();
 }

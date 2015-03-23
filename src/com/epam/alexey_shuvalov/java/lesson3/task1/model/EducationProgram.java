@@ -5,6 +5,7 @@ package com.epam.alexey_shuvalov.java.lesson3.task1.model;
  *
  */
 public class EducationProgram {
+    
     private String programName;
     private Course[] courseScope;
 

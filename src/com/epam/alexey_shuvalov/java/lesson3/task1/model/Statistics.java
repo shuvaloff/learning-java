@@ -45,7 +45,7 @@ public class Statistics implements Trackable {
 
     @Override
     public String getStartDate() {
-        return EducationUtils.convertDateToString(startDateCalendar.getTime());
+        return EducationUtils.convertDateToString(startDate);
     }
 
     @Override
@@ -61,14 +61,6 @@ public class Statistics implements Trackable {
     @Override
     public String getProgramName() {
         return educationProgram.getProgramName();
-    }
-
-    @Override
-    public String[] getEducationHours() {
-        String[] educationHours = new String[2];
-        educationHours[0] = Integer.toString(EducationCenter.STARTING_HOUR_OF_EDUCATION_DAY);
-        educationHours[1] = Integer.toString(EducationCenter.ENDING_HOUR_OF_EDUCATION_DAY);
-        return educationHours;
     }
 
     @Override

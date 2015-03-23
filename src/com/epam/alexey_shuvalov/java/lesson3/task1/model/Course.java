@@ -5,6 +5,7 @@ package com.epam.alexey_shuvalov.java.lesson3.task1.model;
  * @author Alexey_Shuvalov
  */
 public class Course {
+    
     private String courseName;
     private long courseDuration;
 
