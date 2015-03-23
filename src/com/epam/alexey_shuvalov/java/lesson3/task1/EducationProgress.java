@@ -33,13 +33,13 @@ public class EducationProgress {
     }
 
     public void shortReport(Trackable[] educationPrograms) {
-        Calendar current = Calendar.getInstance();
-        EducationUtils.generateShortReport(educationPrograms, current);
+        Date today = new Date();
+        EducationUtils.generateShortReport(educationPrograms, today);
     }
 
     public void fullReport(Trackable[] educationPrograms) {
-        Calendar current = Calendar.getInstance();
-        EducationUtils.generateFullReport(educationPrograms, current);
+        Date today = new Date();
+        EducationUtils.generateFullReport(educationPrograms, today);
     }
 
     public Trackable[] startApplication() {
@@ -60,10 +60,10 @@ public class EducationProgress {
 
         EducationProgram secondEP = new EducationProgram("Java Developer", secondCourseScope);
         
-        Date firstStartDate = EducationUtils.convertStringToDateTime("19.03.2015 10:00:00"); 
+        Date firstStartDate = EducationUtils.convertStringToDateTime("19.03.2015 10:30:00");
         Statistics firstStudentStats = EducationCenter.getStatistics(firstEP, firstStudent, firstStartDate);
         
-        Date secondStartDate = EducationUtils.convertStringToDateTime("17.03.2015 10:00:00"); 
+        Date secondStartDate = EducationUtils.convertStringToDateTime("18.03.2015 10:30:00");
         Statistics secondStudentStats = EducationCenter.getStatistics(secondEP, secondStudent, secondStartDate);
         
         Trackable[] statistics = new Statistics[3];
@@ -74,4 +74,3 @@ public class EducationProgress {
     }
 
 }
-

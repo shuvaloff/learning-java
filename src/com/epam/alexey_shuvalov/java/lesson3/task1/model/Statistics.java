@@ -14,19 +14,12 @@ public class Statistics implements Trackable {
     private Student student;
     private final Date startDate;
     private final Date endDate;
-    private final Calendar startDateCalendar;
-    private final Calendar endDateCalendar;
     
-    public Statistics(EducationProgram educationProgram, Student student, 
-                      Date startDate, Date endDate, 
-                      Calendar startDateCalendar, Calendar endDateCalendar) 
-    {
+    public Statistics(EducationProgram educationProgram, Student student, Date startDate, Date endDate) {
         this.educationProgram = educationProgram;
         this.student = student;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.startDateCalendar = startDateCalendar;
-        this.endDateCalendar = endDateCalendar;
     }
 
     public EducationProgram getEducationProgram() {
@@ -46,12 +39,21 @@ public class Statistics implements Trackable {
     }
 
     @Override
-    public String getStartDate() {
+    public String getStartDateAsString() {
         return EducationUtils.convertDateToString(startDate);
     }
 
+    public Date getStartDate() {
+        return startDate;
+    }
+
     @Override
-    public String getEndDate() {
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    @Override
+    public String getEndDateAsString() {
         return EducationUtils.convertDateToString(endDate);
     }
 
@@ -68,15 +70,6 @@ public class Statistics implements Trackable {
     @Override
     public long getProgramLength() {
         return educationProgram.getProgramLength();
-    }
-
-    @Override
-    public Calendar getEndDateCalendar() {
-        return endDateCalendar;
-    }
-
-    public Calendar getStartDateCalendar() {
-        return startDateCalendar;
     }
 
 }

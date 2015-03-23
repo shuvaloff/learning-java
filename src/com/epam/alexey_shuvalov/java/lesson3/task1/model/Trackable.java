@@ -1,6 +1,7 @@
 package com.epam.alexey_shuvalov.java.lesson3.task1.model;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author Alexey Shuvalov
@@ -9,8 +10,8 @@ import java.util.Calendar;
 public interface Trackable {
     String getStudentName();
     String getProgramName();
-    String getStartDate();
-    String getEndDate();
+    String getStartDateAsString();
+    String getEndDateAsString();
+    Date getEndDate();
     long getProgramLength();
-    Calendar getEndDateCalendar();
 }

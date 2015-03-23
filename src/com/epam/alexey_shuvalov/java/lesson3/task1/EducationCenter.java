@@ -23,7 +23,7 @@ public class EducationCenter {
         endDateCalendar.setTime(startDateCalendar.getTime());
         endDateCalendar = calculateEndDate(endDateCalendar, programDuration);
         Date endDate = endDateCalendar.getTime();
-        Statistics statistics = new Statistics(educationProgram, student, startDate, endDate, startDateCalendar, endDateCalendar);
+        Statistics statistics = new Statistics(educationProgram, student, startDate, endDate);
         return statistics;
     }
     
@@ -38,21 +38,21 @@ public class EducationCenter {
          * specified
          * @return Calendar with education hours
          */
-        skipNonEducationHours(endDateCalendar); // clear() endDateCalendar from non education hours
-        while (programDuration > 0) { // while total program duration in minutes greater than zero do
-            Calendar educationEndTime = Calendar.getInstance(); // create new instance of calendar 
-            educationEndTime.setTime(endDateCalendar.getTime()); // set time to the same with endDateCalendar
-            educationEndTime.set(Calendar.HOUR_OF_DAY, ENDING_HOUR_OF_EDUCATION_DAY); // set HOUR_OF_DAY to 18
-            educationEndTime.clear(Calendar.MINUTE); // set all the time (minutes) to undefined -- cannot be used in time calculations
-            long diffMillis = educationEndTime.getTimeInMillis() - endDateCalendar.getTimeInMillis(); // calculating difference between 10 and 18 hours in millis
-            int diffMinutes = (int) (diffMillis / (1000 * 60)); // converting difference to minutes
-            if (programDuration < diffMinutes) { // if total program duration is less then working hours of the day
-                endDateCalendar.add(Calendar.MINUTE, programDuration); // then add whole programDuration and exit loop
+        skipNonEducationHours(endDateCalendar);
+        while (programDuration > 0) {
+            Calendar educationEndTime = Calendar.getInstance();
+            educationEndTime.setTime(endDateCalendar.getTime());
+            educationEndTime.set(Calendar.HOUR_OF_DAY, ENDING_HOUR_OF_EDUCATION_DAY);
+            educationEndTime.clear(Calendar.MINUTE);
+            long diffMillis = educationEndTime.getTimeInMillis() - endDateCalendar.getTimeInMillis();
+            int diffMinutes = (int) (diffMillis / (1000 * 60));
+            if (programDuration < diffMinutes) {
+                endDateCalendar.add(Calendar.MINUTE, programDuration);
                 break;
             } else {
-                endDateCalendar.add(Calendar.MINUTE, diffMinutes); // else add working hours
-                skipNonEducationHours(endDateCalendar); // clear() endDateCalendar from non education hours
-                programDuration -= diffMinutes; // decrease total program duration by working hours of the 'current' day
+                endDateCalendar.add(Calendar.MINUTE, diffMinutes);
+                skipNonEducationHours(endDateCalendar);
+                programDuration -= diffMinutes;
             }
         }
         return endDateCalendar;

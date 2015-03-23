@@ -93,26 +93,26 @@ public class EducationUtils {
                 days, hours, minutes);
     }
 
-    public static void generateShortReport(Trackable[] statistics, Calendar current) {
+    public static void generateShortReport(Trackable[] statistics, Date today) {
         for (Trackable stat : statistics) {
             if (stat != null) {
-                if (stat.getEndDateCalendar().before(current)) {
+                if (stat.getEndDate().before(today)) {
                     System.out.print(stat.getStudentName() + " (" + stat.getProgramName()
                             + ") - Education program is completed. The time has passed since completion: ");
-                    EducationUtils.printDateDiff(getDateDiff(current.getTime(), stat.getEndDateCalendar().getTime()));
+                    EducationUtils.printDateDiff(getDateDiff(today, stat.getEndDate()));
                 } else {
                     System.out.print(stat.getStudentName() + " (" + stat.getProgramName()
                             + ") - Education program is not completed. The time remaining until completion: ");
-                    EducationUtils.printDateDiff(getDateDiff(current.getTime(), stat.getEndDateCalendar().getTime()));
+                    EducationUtils.printDateDiff(getDateDiff(today, stat.getEndDate()));
                 }
             }
         }
     }
 
-    public static void generateFullReport(Trackable[] statistics, Calendar current) {
+    public static void generateFullReport(Trackable[] statistics, Date today) {
         for (Trackable stat : statistics) {
             if (stat != null) {
-                if (stat.getEndDateCalendar().before(current)) {
+                if (stat.getEndDate().before(today)) {
                     String completedOutput = new StringBuilder()
                             .append("\n")
                             .append(stat.getStudentName())
@@ -125,22 +125,22 @@ public class EducationUtils {
                             .append(".\nThe total length of education program is ")
                             .append(stat.getProgramLength())
                             .append(" hours. Start date is ")
-                            .append(stat.getStartDate())
+                            .append(stat.getStartDateAsString())
                             .append(", and end date is ")
-                            .append(stat.getEndDate())
+                            .append(stat.getEndDateAsString())
                             .append(".\nThe time has passed since completion: ")
                             .toString();
                     System.out.print(completedOutput);
-                    printDateDiff(getDateDiff(current.getTime(), stat.getEndDateCalendar().getTime()));
+                    printDateDiff(getDateDiff(today, stat.getEndDate()));
                 } else {
                     System.out.format("%n%s is studying '%s' education program. Education hours are on weekdays from %s to %s.%n"
                             + "The total length of education program is %s hours. Start date is %s, and end date is %s.%n"
                             + "The time remaining until completion: ",
                             stat.getStudentName(), stat.getProgramName(),
                             EducationCenter.STARTING_HOUR_OF_EDUCATION_DAY, EducationCenter.ENDING_HOUR_OF_EDUCATION_DAY,
-                            stat.getProgramLength(), stat.getStartDate(),
-                            stat.getEndDate());
-                    printDateDiff(getDateDiff(current.getTime(), stat.getEndDateCalendar().getTime()));
+                            stat.getProgramLength(), stat.getStartDateAsString(),
+                            stat.getEndDateAsString());
+                    printDateDiff(getDateDiff(today, stat.getEndDate()));
                 }
             }
         }
