@@ -1,7 +1,6 @@
 package com.epam.alexey_shuvalov.java.lesson3.task1;
 
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.Course;
-import com.epam.alexey_shuvalov.java.lesson3.task1.model.EducationCenter;
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.EducationProgram;
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.Statistics;
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.Student;

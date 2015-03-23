@@ -28,4 +28,14 @@ public class EducationProgram {
         this.programName = programName;
         this.courseScope = courseScope;
     }
+    
+    public long getProgramLength() {
+        long programLength = 0;
+        for (Course aCourseScope : getCourseScope()) {
+            if (aCourseScope != null) {
+                programLength += aCourseScope.getCourseDuration();
+            }
+        }
+        return programLength;
+    }
 }

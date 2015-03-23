@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -22,7 +21,6 @@ public class EducationUtils {
         try {
             return simpleDateFormat.parse(string);
         } catch (ParseException e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -34,7 +32,6 @@ public class EducationUtils {
             date.getTime();
             return date;
         } catch (ParseException e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -45,7 +42,6 @@ public class EducationUtils {
             Date date = simpleDateFormat.parse(string);
             return date.getTime();
         } catch (ParseException e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -71,14 +67,12 @@ public class EducationUtils {
             Date date = simpleDateFormat.parse(string);
             return date.getTime();
         } catch (ParseException e) {
-            e.printStackTrace();
         }
         return null;
     }
 
-    public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
-        long diffInMillies = date2.getTime() - date1.getTime();
-        return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
+    public static long getDateDiff(Date date1, Date date2) {
+        return date2.getTime() - date1.getTime();
     }
 
     public static void printDateDiff(long difference) {
@@ -87,13 +81,13 @@ public class EducationUtils {
         long hoursInMilli = minutesInMilli * 60;
         long daysInMilli = hoursInMilli * 24;
 
-        long days = difference / daysInMilli;
+        long days = Math.abs(difference / daysInMilli);
         difference = difference % daysInMilli;
 
-        long hours = difference / hoursInMilli;
+        long hours = Math.abs(difference / hoursInMilli);
         difference = difference % hoursInMilli;
 
-        long minutes = difference / minutesInMilli;
+        long minutes = Math.abs(difference / minutesInMilli);
 
         System.out.printf("%d day(s), %d hour(s), %d minute(s)%n",
                 days, hours, minutes);
@@ -104,15 +98,13 @@ public class EducationUtils {
         for (Trackable educationProgram : statistics) {
             if (educationProgram != null) {
                 if (educationProgram.getEndDateCalendar().before(current)) {
-                    long diff = getDateDiff(educationProgram.getEndDateCalendar().getTime(), current.getTime(), TimeUnit.MILLISECONDS);
                     System.out.print(educationProgram.getStudentName() + " (" + educationProgram.getProgramName()
                             + ") - Education program is completed. The time has passed since completion: ");
-                    EducationUtils.printDateDiff(diff);
+                    EducationUtils.printDateDiff(getDateDiff(current.getTime(), educationProgram.getEndDateCalendar().getTime()));
                 } else {
-                    long diff = getDateDiff(current.getTime(), educationProgram.getEndDateCalendar().getTime(), TimeUnit.MILLISECONDS);
                     System.out.print(educationProgram.getStudentName() + " (" + educationProgram.getProgramName()
                             + ") - Education program is not completed. The time remaining until completion: ");
-                    EducationUtils.printDateDiff(diff);
+                    EducationUtils.printDateDiff(getDateDiff(current.getTime(), educationProgram.getEndDateCalendar().getTime()));
                 }
             }
         }
@@ -123,7 +115,6 @@ public class EducationUtils {
         for (Trackable educationProgram : statistics) {
             if (educationProgram != null) {
                 if (educationProgram.getEndDateCalendar().before(current)) {
-                    long diff = getDateDiff(educationProgram.getEndDateCalendar().getTime(), current.getTime(), TimeUnit.MILLISECONDS);
                     String completedOutput = new StringBuilder()
                             .append("\n")
                             .append(educationProgram.getStudentName())
@@ -142,9 +133,8 @@ public class EducationUtils {
                             .append(".\nThe time has passed since completion: ")
                             .toString();
                     System.out.print(completedOutput);
-                    printDateDiff(diff);
+                    printDateDiff(getDateDiff(current.getTime(), educationProgram.getEndDateCalendar().getTime()));
                 } else {
-                    long diff = getDateDiff(current.getTime(), educationProgram.getEndDateCalendar().getTime(), TimeUnit.MILLISECONDS);
                     System.out.format("%n%s is studying '%s' education program. Education hours are on weekdays from %s to %s.%n"
                             + "The total length of education program is %s hours. Start date is %s, and end date is %s.%n"
                             + "The time remaining until completion: ",
@@ -152,7 +142,7 @@ public class EducationUtils {
                             educationProgram.getEducationHours()[0], educationProgram.getEducationHours()[1],
                             educationProgram.getProgramLength(), educationProgram.getStartDate(),
                             educationProgram.getEndDate());
-                    printDateDiff(diff);
+                    printDateDiff(getDateDiff(current.getTime(), educationProgram.getEndDateCalendar().getTime()));
                 }
             }
         }
