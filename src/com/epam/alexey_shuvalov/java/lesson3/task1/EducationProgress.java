@@ -1,9 +1,12 @@
 package com.epam.alexey_shuvalov.java.lesson3.task1;
 
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.Course;
+import com.epam.alexey_shuvalov.java.lesson3.task1.model.EducationCenter;
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.EducationProgram;
+import com.epam.alexey_shuvalov.java.lesson3.task1.model.Statistics;
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.Student;
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.Trackable;
+import java.util.Date;
 
 /**
  * @author Alexey Shuvalov
@@ -49,10 +52,7 @@ public class EducationProgress {
         firstCourseScope[0] = new Course("Java Servlets Technology", 16);
         firstCourseScope[1] = new Course("Struts Framework", 24);
 
-        EducationProgram firstEP = new EducationProgram(firstStudent);
-        firstEP.setCourseScope(firstCourseScope);
-        firstEP.setProgramName("J2EE Developer");
-        firstEP.setEducationCalendar(EducationUtils.convertStringToDateTime("17.03.2015 10:00:00"));
+        EducationProgram firstEP = new EducationProgram("J2EE Developer", firstCourseScope);
 
         Course[] secondCourseScope = new Course[4];
         secondCourseScope[0] = new Course("Java Overview", 8);
@@ -60,16 +60,19 @@ public class EducationProgress {
         secondCourseScope[2] = null;
         secondCourseScope[3] = new Course("JDBC Technology", 16);
 
-        EducationProgram secondEP = new EducationProgram(secondStudent);
-        secondEP.setCourseScope(secondCourseScope);
-        secondEP.setProgramName("Java Developer");
-        secondEP.setEducationCalendar(EducationUtils.convertStringToDateTime("15.03.2015 10:00:00"));
-
-        Trackable[] educationPrograms = new EducationProgram[3];
-        educationPrograms[0] = firstEP;
-        educationPrograms[1] = null;
-        educationPrograms[2] = secondEP;
-        return educationPrograms;
+        EducationProgram secondEP = new EducationProgram("Java Developer", secondCourseScope);
+        
+        Date firstStartDate = EducationUtils.convertStringToDateTime("19.03.2015 10:00:00"); 
+        Statistics firstStudentStats = EducationCenter.getStatistics(firstEP, firstStudent, firstStartDate);
+        
+        Date secondStartDate = EducationUtils.convertStringToDateTime("17.03.2015 10:00:00"); 
+        Statistics secondStudentStats = EducationCenter.getStatistics(secondEP, secondStudent, secondStartDate);
+        
+        Trackable[] statistics = new Statistics[3];
+        statistics[0] = firstStudentStats;
+        statistics[1] = null;
+        statistics[2] = secondStudentStats;
+        return statistics;
     }
 
 }

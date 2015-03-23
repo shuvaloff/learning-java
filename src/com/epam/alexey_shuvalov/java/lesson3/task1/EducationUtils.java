@@ -99,54 +99,55 @@ public class EducationUtils {
                 days, hours, minutes);
     }
 
-    public static void generateShortReport(Trackable[] educationPrograms) {
+    public static void generateShortReport(Trackable[] statistics) {
         Calendar current = Calendar.getInstance();
-        for (Trackable educationProgram : educationPrograms) {
+        for (Trackable educationProgram : statistics) {
             if (educationProgram != null) {
-                if (educationProgram.getCompletionDate().before(current)) {
-                    long diff = EducationUtils.getDateDiff(educationProgram.getCompletionDate().getTime(), current.getTime(), TimeUnit.MILLISECONDS);
-                    System.out.print(educationProgram.getStudentName() + " (" + educationProgram.getProgramName() +
-                            ") - Education program is completed. The time has passed since completion: ");
+                if (educationProgram.getEndDateCalendar().before(current)) {
+                    long diff = getDateDiff(educationProgram.getEndDateCalendar().getTime(), current.getTime(), TimeUnit.MILLISECONDS);
+                    System.out.print(educationProgram.getStudentName() + " (" + educationProgram.getProgramName()
+                            + ") - Education program is completed. The time has passed since completion: ");
                     EducationUtils.printDateDiff(diff);
                 } else {
-                    long diff = EducationUtils.getDateDiff(current.getTime(), educationProgram.getCompletionDate().getTime(), TimeUnit.MILLISECONDS);
-                    System.out.print(educationProgram.getStudentName() + " (" + educationProgram.getProgramName() +
-                            ") - Education program is not completed. The time remaining until completion: ");
+                    long diff = getDateDiff(current.getTime(), educationProgram.getEndDateCalendar().getTime(), TimeUnit.MILLISECONDS);
+                    System.out.print(educationProgram.getStudentName() + " (" + educationProgram.getProgramName()
+                            + ") - Education program is not completed. The time remaining until completion: ");
                     EducationUtils.printDateDiff(diff);
                 }
             }
         }
     }
-    public static void generateFullReport(Trackable[] educationPrograms) {
+
+    public static void generateFullReport(Trackable[] statistics) {
         Calendar current = Calendar.getInstance();
-        for (Trackable educationProgram : educationPrograms) {
+        for (Trackable educationProgram : statistics) {
             if (educationProgram != null) {
-                if (educationProgram.getCompletionDate().before(current)) {
-                    long diff = getDateDiff(educationProgram.getCompletionDate().getTime(), current.getTime(), TimeUnit.MILLISECONDS);                   
+                if (educationProgram.getEndDateCalendar().before(current)) {
+                    long diff = getDateDiff(educationProgram.getEndDateCalendar().getTime(), current.getTime(), TimeUnit.MILLISECONDS);
                     String completedOutput = new StringBuilder()
-                          .append("\n")
-                          .append(educationProgram.getStudentName())
-                          .append(" has completed '")                          
-                          .append(educationProgram.getProgramName())
-                          .append("' education program. Education hours were on weekdays from ")                          
-                          .append(educationProgram.getEducationHours()[0])
-                          .append(" to ")                          
-                          .append(educationProgram.getEducationHours()[1])
-                          .append(".\nThe total length of education program is ")                          
-                          .append(educationProgram.getProgramLength())
-                          .append(" hours. Start date is ")                          
-                          .append(educationProgram.getStartDate())
-                          .append(", and end date is ")                          
-                          .append(educationProgram.getEndDate())
-                          .append(".\nThe time has passed since completion: ") 
-                          .toString();
+                            .append("\n")
+                            .append(educationProgram.getStudentName())
+                            .append(" has completed '")
+                            .append(educationProgram.getProgramName())
+                            .append("' education program. Education hours were on weekdays from ")
+                            .append(educationProgram.getEducationHours()[0])
+                            .append(" to ")
+                            .append(educationProgram.getEducationHours()[1])
+                            .append(".\nThe total length of education program is ")
+                            .append(educationProgram.getProgramLength())
+                            .append(" hours. Start date is ")
+                            .append(educationProgram.getStartDate())
+                            .append(", and end date is ")
+                            .append(educationProgram.getEndDate())
+                            .append(".\nThe time has passed since completion: ")
+                            .toString();
                     System.out.print(completedOutput);
                     printDateDiff(diff);
                 } else {
-                    long diff = getDateDiff(current.getTime(), educationProgram.getCompletionDate().getTime(), TimeUnit.MILLISECONDS);
-                    System.out.format("\n%s is studying '%s' education program. Education hours are on weekdays from %s to %s.\n" +
-                                    "The total length of education program is %s hours. Start date is %s, and end date is %s.\n" +
-                                    "The time remaining until completion: ",
+                    long diff = getDateDiff(current.getTime(), educationProgram.getEndDateCalendar().getTime(), TimeUnit.MILLISECONDS);
+                    System.out.format("%n%s is studying '%s' education program. Education hours are on weekdays from %s to %s.%n"
+                            + "The total length of education program is %s hours. Start date is %s, and end date is %s.%n"
+                            + "The time remaining until completion: ",
                             educationProgram.getStudentName(), educationProgram.getProgramName(),
                             educationProgram.getEducationHours()[0], educationProgram.getEducationHours()[1],
                             educationProgram.getProgramLength(), educationProgram.getStartDate(),
@@ -156,5 +157,5 @@ public class EducationUtils {
             }
         }
     }
-    
+
 }
