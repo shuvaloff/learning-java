@@ -3,7 +3,6 @@ package com.epam.alexey_shuvalov.java.lesson3.task1;
 import com.epam.alexey_shuvalov.java.lesson3.task1.model.Trackable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -14,7 +13,6 @@ public class EducationUtils {
 
     public static final String SIMPLE_DATE_TIME_FORMAT = "dd.MM.yyyy HH:mm:ss";
     public static final String SIMPLE_DATE_FORMAT = "dd.MM.yyyy";
-    public static final String SIMPLE_TIME_FORMAT = "HH:mm:ss";
 
     public static Date convertStringToDateTime(String string) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SIMPLE_DATE_TIME_FORMAT);
@@ -25,50 +23,9 @@ public class EducationUtils {
         return null;
     }
 
-    public static Date convertStringToTime(String string) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SIMPLE_TIME_FORMAT);
-        try {
-            Date date = simpleDateFormat.parse(string);
-            date.getTime();
-            return date;
-        } catch (ParseException e) {
-        }
-        return null;
-    }
-
-    public static Long convertStringToTimeLong(String string) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SIMPLE_TIME_FORMAT);
-        try {
-            Date date = simpleDateFormat.parse(string);
-            return date.getTime();
-        } catch (ParseException e) {
-        }
-        return null;
-    }
-
-    public static String convertTimeToString(Date date) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SIMPLE_TIME_FORMAT);
-        return simpleDateFormat.format(date);
-    }
-
     public static String convertDateToString(Date date) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SIMPLE_DATE_FORMAT);
         return simpleDateFormat.format(date);
-    }
-
-    public static String convertDateTimeToString(Date date) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SIMPLE_DATE_TIME_FORMAT);
-        return simpleDateFormat.format(date);
-    }
-
-    public static Long convertStringToDateTimeLong(String string) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SIMPLE_DATE_TIME_FORMAT);
-        try {
-            Date date = simpleDateFormat.parse(string);
-            return date.getTime();
-        } catch (ParseException e) {
-        }
-        return null;
     }
 
     public static long getDateDiff(Date date1, Date date2) {

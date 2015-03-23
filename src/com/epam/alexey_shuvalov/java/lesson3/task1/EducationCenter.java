@@ -23,8 +23,7 @@ public class EducationCenter {
         endDateCalendar.setTime(startDateCalendar.getTime());
         endDateCalendar = calculateEndDate(endDateCalendar, programDuration);
         Date endDate = endDateCalendar.getTime();
-        Statistics statistics = new Statistics(educationProgram, student, startDate, endDate);
-        return statistics;
+        return new Statistics(educationProgram, student, startDate, endDate);
     }
     
         private static Calendar calculateEndDate(Calendar endDateCalendar, int programDuration) {

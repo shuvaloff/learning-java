@@ -1,7 +1,6 @@
 package com.epam.alexey_shuvalov.java.lesson3.task1.model;
 
 import com.epam.alexey_shuvalov.java.lesson3.task1.EducationUtils;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
