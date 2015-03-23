@@ -7,8 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- *
  * @author Alexey Shuvalov
+ * 
  */
 public class EducationUtils {
 
@@ -93,8 +93,7 @@ public class EducationUtils {
                 days, hours, minutes);
     }
 
-    public static void generateShortReport(Trackable[] statistics) {
-        Calendar current = Calendar.getInstance();
+    public static void generateShortReport(Trackable[] statistics, Calendar current) {
         for (Trackable stat : statistics) {
             if (stat != null) {
                 if (stat.getEndDateCalendar().before(current)) {
@@ -110,8 +109,7 @@ public class EducationUtils {
         }
     }
 
-    public static void generateFullReport(Trackable[] statistics) {
-        Calendar current = Calendar.getInstance();
+    public static void generateFullReport(Trackable[] statistics, Calendar current) {
         for (Trackable stat : statistics) {
             if (stat != null) {
                 if (stat.getEndDateCalendar().before(current)) {

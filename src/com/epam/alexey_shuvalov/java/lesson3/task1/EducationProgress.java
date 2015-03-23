@@ -1,10 +1,7 @@
 package com.epam.alexey_shuvalov.java.lesson3.task1;
 
-import com.epam.alexey_shuvalov.java.lesson3.task1.model.Course;
-import com.epam.alexey_shuvalov.java.lesson3.task1.model.EducationProgram;
-import com.epam.alexey_shuvalov.java.lesson3.task1.model.Statistics;
-import com.epam.alexey_shuvalov.java.lesson3.task1.model.Student;
-import com.epam.alexey_shuvalov.java.lesson3.task1.model.Trackable;
+import com.epam.alexey_shuvalov.java.lesson3.task1.model.*;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -36,11 +33,13 @@ public class EducationProgress {
     }
 
     public void shortReport(Trackable[] educationPrograms) {
-        EducationUtils.generateShortReport(educationPrograms);
+        Calendar current = Calendar.getInstance();
+        EducationUtils.generateShortReport(educationPrograms, current);
     }
 
     public void fullReport(Trackable[] educationPrograms) {
-        EducationUtils.generateFullReport(educationPrograms);
+        Calendar current = Calendar.getInstance();
+        EducationUtils.generateFullReport(educationPrograms, current);
     }
 
     public Trackable[] startApplication() {

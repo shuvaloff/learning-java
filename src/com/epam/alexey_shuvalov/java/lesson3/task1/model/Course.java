@@ -1,8 +1,8 @@
 package com.epam.alexey_shuvalov.java.lesson3.task1.model;
 
 /**
- *
- * @author Alexey_Shuvalov
+ * @author Alexey Shuvalov
+ * 
  */
 public class Course {
     

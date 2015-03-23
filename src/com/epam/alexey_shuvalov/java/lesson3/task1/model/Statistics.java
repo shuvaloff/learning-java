@@ -1,7 +1,6 @@
 package com.epam.alexey_shuvalov.java.lesson3.task1.model;
 
 import com.epam.alexey_shuvalov.java.lesson3.task1.EducationUtils;
-import com.epam.alexey_shuvalov.java.lesson3.task1.EducationCenter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -18,7 +17,10 @@ public class Statistics implements Trackable {
     private final Calendar startDateCalendar;
     private final Calendar endDateCalendar;
     
-    public Statistics(EducationProgram educationProgram, Student student, Date startDate, Date endDate, Calendar startDateCalendar, Calendar endDateCalendar) {
+    public Statistics(EducationProgram educationProgram, Student student, 
+                      Date startDate, Date endDate, 
+                      Calendar startDateCalendar, Calendar endDateCalendar) 
+    {
         this.educationProgram = educationProgram;
         this.student = student;
         this.startDate = startDate;
@@ -73,7 +75,7 @@ public class Statistics implements Trackable {
         return endDateCalendar;
     }
 
-    private Calendar getStartDateCalendar() {
+    public Calendar getStartDateCalendar() {
         return startDateCalendar;
     }
 
