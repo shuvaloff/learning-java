@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  * @author Alexey Shuvalov
- * 
+ *
  */
 public class EducationUtils {
 
@@ -21,6 +21,11 @@ public class EducationUtils {
         } catch (ParseException e) {
         }
         return null;
+    }
+
+    public static String convertDateTimeToString(Date date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(SIMPLE_DATE_TIME_FORMAT);
+        return simpleDateFormat.format(date);
     }
 
     public static String convertDateToString(Date date) {
@@ -50,7 +55,7 @@ public class EducationUtils {
                 days, hours, minutes);
     }
 
-    public static void generateShortReport(Trackable[] statistics, Date today) {
+    public static void generateShortReport(Trackable[] statistics, Date today) {        
         for (Trackable stat : statistics) {
             if (stat != null) {
                 if (stat.getEndDate().before(today)) {
@@ -67,6 +72,7 @@ public class EducationUtils {
     }
 
     public static void generateFullReport(Trackable[] statistics, Date today) {
+        System.out.print("\nToday's date and time are: " + convertDateTimeToString(today) + "\n");
         for (Trackable stat : statistics) {
             if (stat != null) {
                 if (stat.getEndDate().before(today)) {
@@ -82,9 +88,9 @@ public class EducationUtils {
                             .append(".\nThe total length of education program is ")
                             .append(stat.getProgramLength())
                             .append(" hours. Start date is ")
-                            .append(stat.getStartDateAsString())
+                            .append(convertDateTimeToString(stat.getStartDate()))
                             .append(", and end date is ")
-                            .append(stat.getEndDateAsString())
+                            .append(convertDateTimeToString(stat.getEndDate()))
                             .append(".\nThe time has passed since completion: ")
                             .toString();
                     System.out.print(completedOutput);
@@ -95,8 +101,8 @@ public class EducationUtils {
                             + "The time remaining until completion: ",
                             stat.getStudentName(), stat.getProgramName(),
                             EducationCenter.STARTING_HOUR_OF_EDUCATION_DAY, EducationCenter.ENDING_HOUR_OF_EDUCATION_DAY,
-                            stat.getProgramLength(), stat.getStartDateAsString(),
-                            stat.getEndDateAsString());
+                            stat.getProgramLength(), convertDateTimeToString(stat.getStartDate()),
+                            convertDateTimeToString(stat.getEndDate()));
                     printDateDiff(getDateDiff(today, stat.getEndDate()));
                 }
             }

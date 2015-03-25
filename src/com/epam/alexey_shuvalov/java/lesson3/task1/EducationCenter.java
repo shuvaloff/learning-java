@@ -16,17 +16,19 @@ public class EducationCenter {
     public static final int ENDING_HOUR_OF_EDUCATION_DAY = 18;
     
     public static Statistics getStatistics(EducationProgram educationProgram, Student student, Date startDate) {
-        Calendar startDateCalendar = Calendar.getInstance();
-        startDateCalendar.setTime(startDate);
+//        Calendar startDateCalendar = Calendar.getInstance();
+//        startDateCalendar.setTime(startDate);
         int programDuration = (int) educationProgram.getProgramLength() * 60;
-        Calendar endDateCalendar = Calendar.getInstance();
-        endDateCalendar.setTime(startDateCalendar.getTime());
-        endDateCalendar = calculateEndDate(endDateCalendar, programDuration);
-        Date endDate = endDateCalendar.getTime();
+        
+        
+//        endDateCalendar.setTime(startDateCalendar.getTime());
+        Date endDate = calculateEndDate(startDate, programDuration).getTime();
         return new Statistics(educationProgram, student, startDate, endDate);
     }
     
-        private static Calendar calculateEndDate(Calendar endDateCalendar, int programDuration) {
+        private static Calendar calculateEndDate(Date startDate, int programDuration) {
+        Calendar endDateCalendar = Calendar.getInstance();
+        endDateCalendar.setTime(startDate); 
         /**
          * Calculates endDateCalendar by looping through programDuration (in
          * minutes) over 'dead' calendar (where all fields are undefined). Adds

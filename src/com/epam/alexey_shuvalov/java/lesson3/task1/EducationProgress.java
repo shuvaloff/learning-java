@@ -60,10 +60,10 @@ public class EducationProgress {
 
         EducationProgram secondEP = new EducationProgram("Java Developer", secondCourseScope);
         
-        Date firstStartDate = EducationUtils.convertStringToDateTime("19.03.2015 10:30:00");
+        Date firstStartDate = EducationUtils.convertStringToDateTime("24.03.2015 10:00:00");
         Statistics firstStudentStats = EducationCenter.getStatistics(firstEP, firstStudent, firstStartDate);
         
-        Date secondStartDate = EducationUtils.convertStringToDateTime("18.03.2015 10:30:00");
+        Date secondStartDate = EducationUtils.convertStringToDateTime("20.03.2015 10:00:00");
         Statistics secondStudentStats = EducationCenter.getStatistics(secondEP, secondStudent, secondStartDate);
         
         Trackable[] statistics = new Statistics[3];
@@ -72,5 +72,4 @@ public class EducationProgress {
         statistics[2] = secondStudentStats;
         return statistics;
     }
-
 }

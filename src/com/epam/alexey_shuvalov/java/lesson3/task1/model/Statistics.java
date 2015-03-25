@@ -1,6 +1,5 @@
 package com.epam.alexey_shuvalov.java.lesson3.task1.model;
 
-import com.epam.alexey_shuvalov.java.lesson3.task1.EducationUtils;
 import java.util.Date;
 
 /**
@@ -36,12 +35,8 @@ public class Statistics implements Trackable {
     public void setStudent(Student student) {
         this.student = student;
     }
-
+    
     @Override
-    public String getStartDateAsString() {
-        return EducationUtils.convertDateToString(startDate);
-    }
-
     public Date getStartDate() {
         return startDate;
     }
@@ -49,11 +44,6 @@ public class Statistics implements Trackable {
     @Override
     public Date getEndDate() {
         return endDate;
-    }
-
-    @Override
-    public String getEndDateAsString() {
-        return EducationUtils.convertDateToString(endDate);
     }
 
     @Override

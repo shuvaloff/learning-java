@@ -9,8 +9,7 @@ import java.util.Date;
 public interface Trackable {
     String getStudentName();
     String getProgramName();
-    String getStartDateAsString();
-    String getEndDateAsString();
+    Date getStartDate();
     Date getEndDate();
     long getProgramLength();
 }
