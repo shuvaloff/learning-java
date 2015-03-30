@@ -16,12 +16,7 @@ public class EducationCenter {
     public static final int ENDING_HOUR_OF_EDUCATION_DAY = 18;
     
     public static Statistics getStatistics(EducationProgram educationProgram, Student student, Date startDate) {
-//        Calendar startDateCalendar = Calendar.getInstance();
-//        startDateCalendar.setTime(startDate);
         int programDuration = (int) educationProgram.getProgramLength() * 60;
-        
-        
-//        endDateCalendar.setTime(startDateCalendar.getTime());
         Date endDate = calculateEndDate(startDate, programDuration).getTime();
         return new Statistics(educationProgram, student, startDate, endDate);
     }
