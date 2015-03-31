@@ -2,7 +2,7 @@ package com.epam.alexey_shuvalov.java.lesson5.task1;
 
 import com.epam.alexey_shuvalov.java.lesson5.task1.model.*;
 import com.epam.alexey_shuvalov.java.lesson5.task1.model.impl.*;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -21,12 +21,8 @@ public class SaladChef {
         Potato potato = new Potato();
         Tomato tomato = new Tomato();
 
-        List<CulinaryVegetable> ingredients = new ArrayList<>();        
-        ingredients.add(cucumber);
-        ingredients.add(onion);
-        ingredients.add(potato);
-        ingredients.add(tomato);
-
+        List<CulinaryVegetable> ingredients = Arrays.asList(cucumber, onion, potato, tomato);
+        
         CookBook salad = new Salad(ingredients);
 
         System.out.println("There are following vegetables in this salad: \n");
@@ -36,6 +32,5 @@ public class SaladChef {
         SaladUtils.showIngredients(salad.sortVegetablesByCalories());
         System.out.println("\nThis salad contains the following vegetables (within 30..75 Calories range):\n");
         SaladUtils.showIngredients(salad.findVegetablesByCaloriesRange(30, 75));
-
     }
 }

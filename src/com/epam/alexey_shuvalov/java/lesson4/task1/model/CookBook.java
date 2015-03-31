@@ -12,5 +12,5 @@ public interface CookBook {
     CulinaryVegetable[] sortVegetablesByCalories();
 
     CulinaryVegetable[] findVegetablesByCaloriesRange(double min, double max) 
-            throws Salad.AnInvalidValueException;
+            throws CookBookException;
 }

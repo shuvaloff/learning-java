@@ -8,24 +8,19 @@ import com.epam.alexey_shuvalov.java.lesson4.task1.model.impl.*;
  *         Created on 14.03.2015.
  */
 public class SaladChef {
-    public static void main(String[] args) throws Salad.AnInvalidValueException {
+    public static void main(String[] args) throws CookBookException {
         SaladChef app = new SaladChef();
         app.startApplication();
     }
 
-    public void startApplication() throws Salad.AnInvalidValueException {
+    public void startApplication() throws CookBookException {
         Cucumber cucumber = new Cucumber();
         Onion onion = new Onion();
         Potato potato = new Potato();
-        Tomato tomato = new Tomato();
-
-        CulinaryVegetable[] ingredients = new CulinaryVegetable[4];        
-        ingredients[0] = cucumber;
-        ingredients[1] = onion;
-        ingredients[2] = potato;
-        ingredients[3] = tomato;
-
-        CookBook salad = new Salad(ingredients);
+        Tomato tomato = new Tomato();     
+        
+        CookBook salad = new Salad(new CulinaryVegetable[]{cucumber, onion, potato, tomato});
+        
         System.out.println("There are following vegetables in this salad: \n");
         SaladUtils.showIngredients(salad.getIngredients());
         System.out.println("\nTotal Calories in this salad: " + salad.countCalories() + " kcal.");
@@ -34,7 +29,7 @@ public class SaladChef {
         System.out.println("\nThis salad contains the following vegetables (within 30..-75 Calories range):\n");
         try {
             SaladUtils.showIngredients(salad.findVegetablesByCaloriesRange(30, -75));
-        } catch (Salad.AnInvalidValueException ex) {
+        } catch (CookBookException ex) {
             System.out.println(ex.getMessage());
         }
 
@@ -54,4 +49,5 @@ public class SaladChef {
         System.out.println("\nThis salad contains the following vegetables (within -30..75 Calories range):\n");
         SaladUtils.showIngredients(newSalad.findVegetablesByCaloriesRange(-30, 75));
     } 
+    
 }

@@ -14,7 +14,7 @@ public class Salad implements CookBook {
         this.culinaryVegetables = new CulinaryVegetable[100];
     }
 
-    public Salad(CulinaryVegetable[] culinaryVegetables) {
+    public Salad(CulinaryVegetable... culinaryVegetables) {
         this.culinaryVegetables = culinaryVegetables;
     }
 
@@ -50,15 +50,15 @@ public class Salad implements CookBook {
     }
 
     @Override
-    public CulinaryVegetable[] findVegetablesByCaloriesRange(double min, double max) throws AnInvalidValueException {
+    public CulinaryVegetable[] findVegetablesByCaloriesRange(double min, double max) throws CookBookException {
         if (min < 0) {
-            throw new AnInvalidValueException("Min < 0");
+            throw new CookBookException("Min < 0");
         }
         if (max < 0) {
-            throw new AnInvalidValueException("Max < 0");
+            throw new CookBookException("Max < 0");
         }
         if (min > max) {
-            throw new AnInvalidValueException("Min > Max");
+            throw new CookBookException("Min > Max");
         }
         CulinaryVegetable[] foundVegetables = new CulinaryVegetable[culinaryVegetables.length];
         for (int i = 0; i < culinaryVegetables.length; i++) {
@@ -92,10 +92,5 @@ public class Salad implements CookBook {
         }
         return 0;
     }
-    
-    public class AnInvalidValueException extends Exception {
-        public AnInvalidValueException(String exceptionMessage) {
-            super(exceptionMessage);
-        }
-    }
+   
 }
