@@ -25,12 +25,6 @@ public class SaladChef {
         
         CookBook salad = new Salad(ingredients);
 
-        System.out.println("There are following vegetables in this salad: \n");
-        SaladUtils.showIngredients(salad.getIngredients());
-        System.out.println("\nTotal Calories in this salad: " + salad.countCalories() + " kcal.");
-        System.out.println("\nList of the vegetables sorted by Calories (ascending order): \n");
-        SaladUtils.showIngredients(salad.sortVegetablesByCalories());
-        System.out.println("\nThis salad contains the following vegetables (within 30..75 Calories range):\n");
-        SaladUtils.showIngredients(salad.findVegetablesByCaloriesRange(30, 75));
+        SaladUtils.printResults(salad, salad.getIngredients(), 30, 75);
     }
 }

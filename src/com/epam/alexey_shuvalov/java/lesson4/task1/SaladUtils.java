@@ -15,13 +15,13 @@ public class SaladUtils {
         }
     }
     
-     public static void printResults(CookBook salad, CulinaryVegetable[] culinaryVegetables, double min, double max) throws CookBookException {
+    public static void printResults(CookBook salad, CulinaryVegetable[] culinaryVegetables, double min, double max) throws CookBookException {
         System.out.println("\nThere are following vegetables in this salad: \n");
         showIngredients(culinaryVegetables);
         System.out.println("\nTotal Calories in this salad: " + salad.countCalories() + " kcal.");
         System.out.println("\nList of the vegetables sorted by Calories (ascending order): \n");
         showIngredients(salad.sortVegetablesByCalories());
-        System.out.println("\nThis salad contains the following vegetables (within -30..75 Calories range):\n");
+        System.out.println("\nThis salad contains the following vegetables (within " + min + ".." + max + " Calories range):\n");
         showIngredients(salad.findVegetablesByCaloriesRange(min, max));
     }
 }

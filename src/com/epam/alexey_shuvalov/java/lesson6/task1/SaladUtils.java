@@ -1,7 +1,7 @@
-package com.epam.alexey_shuvalov.java.lesson5.task1;
+package com.epam.alexey_shuvalov.java.lesson6.task1;
 
-import com.epam.alexey_shuvalov.java.lesson5.task1.model.CookBook;
-import com.epam.alexey_shuvalov.java.lesson5.task1.model.CulinaryVegetable;
+import com.epam.alexey_shuvalov.java.lesson6.task1.model.CookBook;
+import com.epam.alexey_shuvalov.java.lesson6.task1.model.CulinaryVegetable;
 import java.util.List;
 
 /**
