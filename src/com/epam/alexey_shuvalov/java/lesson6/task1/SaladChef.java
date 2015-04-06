@@ -24,9 +24,7 @@ public class SaladChef {
             List<CulinaryVegetable> ingredients = Arrays.asList(tomato, cucumber, potato, onion);     
             FileUtils.serializeObjectsToFile(ingredients, fullPath);            
         }
-        Tomato tomato = new Tomato();
-        FileUtils.serializeObjectToFile(tomato, fullPath);
-        CookBook salad = new SaladF(fullPath);
+        CookBook salad = new Salad(FileUtils.deserializeObjectsFromFile(fullPath));
         SaladUtils.printResults(salad, salad.getIngredients(), 30, 75);
     }
 }

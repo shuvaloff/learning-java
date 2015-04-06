@@ -32,21 +32,7 @@ public class FileUtils {
             for (CulinaryVegetable ingredient : ingredients) {
                 output.writeObject(ingredient);
             }
-            output.close();
-        } catch (IOException ex) {
-        }
-    }
-
-    public static void serializeObjectToFile(CulinaryVegetable culinaryVegetable, String filePath) {
-        try (ObjectOutput output = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(filePath, true))) 
-            {   @Override
-                protected void writeStreamHeader() throws IOException {
-                    reset();
-                }
-            }) 
-        {
-            output.writeObject(culinaryVegetable);
-            output.close();
+            output.flush();
         } catch (IOException ex) {
         }
     }
@@ -56,9 +42,12 @@ public class FileUtils {
         try (ObjectInput input = new ObjectInputStream(new BufferedInputStream(new FileInputStream(inputFile)));) 
         {
             while (true) {
-                ingredients.add((CulinaryVegetable) input.readObject());
+                try {
+                    ingredients.add((CulinaryVegetable) input.readObject());
+                } catch (EOFException ex) {
+                    break;
+                }
             }
-        } catch (EOFException ex) {
             return ingredients;
         } catch (ClassNotFoundException | IOException ex) {
             System.out.println(ex.getMessage());

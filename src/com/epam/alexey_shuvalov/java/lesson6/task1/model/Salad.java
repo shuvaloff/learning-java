@@ -8,7 +8,7 @@ import java.util.Collections;
 /**
  * @author Alexey Shuvalov Created on 14.03.2015.
  */
-public class Salad { //implements CookBook {
+public class Salad implements CookBook {
     private List<CulinaryVegetable> culinaryVegetables = new ArrayList<>();
 
     public Salad() {
