@@ -3,7 +3,7 @@ package com.epam.alexey_shuvalov.java.lesson6.task1;
 import com.epam.alexey_shuvalov.java.lesson6.task1.model.*;
 import com.epam.alexey_shuvalov.java.lesson6.task1.model.impl.*;
 import java.util.Arrays;
-import java.util.List;
+
 /**
  * @author Alexey Shuvalov
  *         Created on 14.03.2015.
@@ -21,8 +21,7 @@ public class SaladChef {
             Onion onion = new Onion();
             Potato potato = new Potato();
             Tomato tomato = new Tomato();
-            List<CulinaryVegetable> ingredients = Arrays.asList(tomato, cucumber, potato, onion);     
-            FileUtils.serializeObjectsToFile(ingredients, fullPath);            
+            FileUtils.serializeObjectsToFile(Arrays.asList(tomato, cucumber, potato, onion), fullPath);            
         }
         CookBook salad = new Salad(FileUtils.deserializeObjectsFromFile(fullPath));
         SaladUtils.printResults(salad, salad.getIngredients(), 30, 75);
