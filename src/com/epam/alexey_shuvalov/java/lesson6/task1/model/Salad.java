@@ -18,7 +18,7 @@ public class Salad implements CookBook {
         this.culinaryVegetables = culinaryVegetables;
     }
 
-//    @Override
+    @Override
     public List<CulinaryVegetable> sortVegetablesByCalories() {
         List<CulinaryVegetable> culinaryVegetables = this.culinaryVegetables;
         Collections.sort(culinaryVegetables, new Comparator<CulinaryVegetable>() {
@@ -38,7 +38,7 @@ public class Salad implements CookBook {
         return culinaryVegetables;
     }
 
-//    @Override
+    @Override
     public double countCalories() {
         double totalCalories = 0;
         for (CulinaryVegetable culinaryVegetable : culinaryVegetables) {
@@ -49,7 +49,7 @@ public class Salad implements CookBook {
         return totalCalories;
     }
 
-//    @Override
+    @Override
     public List<CulinaryVegetable> findVegetablesByCaloriesRange(double min, double max) {
         double calories;
         List<CulinaryVegetable> foundVegetables = new ArrayList<>();
@@ -62,7 +62,7 @@ public class Salad implements CookBook {
         return foundVegetables;        
     }
 
-//    @Override
+    @Override
     public List<CulinaryVegetable> getIngredients() {
         return culinaryVegetables;
     }
