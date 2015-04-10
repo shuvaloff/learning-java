@@ -6,4 +6,4 @@ package com.epam.alexey_shuvalov.java.lesson7.task1.connection;
  */
 public enum ConnectionType { 
     ORACLE, DERBY 
-};
+}

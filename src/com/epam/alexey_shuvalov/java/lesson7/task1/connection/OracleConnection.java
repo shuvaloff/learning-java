@@ -66,11 +66,9 @@ public class OracleConnection implements DBConnection {
                             while (records.next()) {
                                 int mgrNULL, commNULL;
                                 int empID = getLastPKValue();
-                                StringBuilder query = new StringBuilder();
-                                query.append("INSERT INTO APP.EMP ");
-                                query.append("(EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO) \n");
-                                query.append("	VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                                PreparedStatement preparedStatement = connection.prepareStatement(query.toString());
+                                PreparedStatement preparedStatement = connection.prepareStatement(
+                                        "INSERT INTO APP.EMP " + "(EMPNO, ENAME, JOB, MGR, HIREDATE, SAL, COMM, DEPTNO) \n" +
+                                        "	VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                                 preparedStatement.setInt(1, ++empID);
                                 preparedStatement.setString(2, records.getString(2));
                                 preparedStatement.setString(3, records.getString(3));
@@ -115,9 +113,8 @@ public class OracleConnection implements DBConnection {
             try (Statement statement = connection.createStatement();
                  ResultSet resultSet = statement.executeQuery("select EMPNO from EMP ORDER BY EMPNO DESC")) 
             {
-                while (resultSet.next()) {
-                    int id = resultSet.getInt("EMPNO");
-                    return id;
+                if (resultSet.next()) {
+                    return resultSet.getInt("EMPNO");
                 }
             }
         } catch (SQLException ex) {

@@ -42,7 +42,6 @@ Network Trash Folder
 Temporary Items
 .apdisk
 .idea/scopes/scope_settings.xml
-*.xml
 learning-java.iml
 *.class
 .idea/.name

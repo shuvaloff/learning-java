@@ -1,6 +1,5 @@
 package com.epam.alexey_shuvalov.java.lesson7.task1;
 
-import com.epam.alexey_shuvalov.java.lesson7.task1.connection.DBConnectionException;
 import static java.lang.System.out;
 import java.sql.SQLException;
 

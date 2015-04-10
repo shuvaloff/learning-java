@@ -1,4 +1,3 @@
-
 package com.epam.alexey_shuvalov.java.lesson7.task1;
 
 import com.epam.alexey_shuvalov.java.lesson7.task1.connection.ConnectionType;
@@ -18,8 +17,7 @@ public class DBScott {
             app.startApplication();
         } catch (DBConnectionException ex) {
             DBUtils.printException(ex);
-        }
-        
+        }  
     }
 
     private void startApplication() throws DBConnectionException {
