@@ -15,7 +15,7 @@ import java.sql.Types;
  */
 public class DerbyConnection implements DBConnection {
 
-    private static final String DB_CONNECTION_STRING = "sjdbc:derby://localhost:1527/sample;user=app;password=app";
+    private static final String DB_CONNECTION_STRING = "jdbc:derby://localhost:1527/sample;user=app;password=app";
     private static final String TABLE_NAME = "EMP";
     private static final int TIMEOUT = 5;
     private Connection connection;
