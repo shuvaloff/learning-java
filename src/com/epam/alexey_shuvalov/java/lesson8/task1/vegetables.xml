@@ -1,0 +1,43 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<vegetables>
+	<vegetable id = "V_1">
+		<name>Tomato</name>
+		<type>Fruits</type>
+		<nutritionvalue>
+			<protein>0.6</protein>
+			<fat>0.2</fat>
+			<carbohydrate>4.20</carbohydrate>
+			<calories>19.89</calories>
+		</nutritionvalue>
+	</vegetable>
+	<vegetable id = "V_2">
+		<name>Onion</name>
+		<type>Bulb and stem vegetables</type>
+		<nutritionvalue>
+			<protein>1.4</protein>
+			<fat>0.2</fat>
+			<carbohydrate>8.19</carbohydrate>
+			<calories>38.10</calories>
+		</nutritionvalue>
+	</vegetable>
+	<vegetable id = "V_3">
+		<name>Potato</name>
+		<type>Root and tuberous vegetables</type>
+		<nutritionvalue>
+			<protein>2.0</protein>
+			<fat>0.4</fat>
+			<carbohydrate>16.30</carbohydrate>
+			<calories>72.70</calories>
+		</nutritionvalue>
+	</vegetable>
+	<vegetable id = "V_4">
+		<name>Cucumber</name>
+		<type>Fruits</type>
+		<nutritionvalue>
+			<protein>0.8</protein>
+			<fat>0.1</fat>
+			<carbohydrate>3.0</carbohydrate>
+			<calories>4.0</calories>
+		</nutritionvalue>
+	</vegetable>
+</vegetables>
