@@ -7,7 +7,7 @@ package com.epam.alexey_shuvalov.java.lesson7.task1.connection;
 
 /**
  *
- * @author Alexey_Shuvalov
+ * @author Alexey Shuvalov
  */
 public class DBConnectionException extends Exception {
 

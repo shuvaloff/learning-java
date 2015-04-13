@@ -21,4 +21,3 @@ public class SAXvParser {
         return handler.culinaryVegetables;
     }
 }
-
