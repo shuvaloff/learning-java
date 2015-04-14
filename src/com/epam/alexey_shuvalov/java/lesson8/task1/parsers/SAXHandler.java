@@ -13,9 +13,13 @@ import java.util.List;
  *         Created on 10.04.2015.
  */
 public class SAXHandler extends DefaultHandler {
-    public List<CulinaryVegetable> culinaryVegetables = new ArrayList<>();
+    private List<CulinaryVegetable> culinaryVegetables = new ArrayList<>();
     private CulinaryVegetable culinaryVegetable = null;
     private String value = "";
+
+    public List<CulinaryVegetable> getCulinaryVegetables() {
+        return culinaryVegetables;
+    }
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {

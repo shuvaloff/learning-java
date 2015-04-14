@@ -18,6 +18,6 @@ public class SAXvParser {
         SAXParser parser = parserFactor.newSAXParser();
         SAXHandler handler = new SAXHandler();
         parser.parse(new FileInputStream(filePath), handler);
-        return handler.culinaryVegetables;
+        return handler.getCulinaryVegetables();
     }
 }
