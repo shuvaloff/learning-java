@@ -13,7 +13,7 @@ import java.util.List;
  *         Created on 10.04.2015.
  */
 public class SAXHandler extends DefaultHandler {
-    private List<CulinaryVegetable> culinaryVegetables = new ArrayList<>();
+    private final List<CulinaryVegetable> culinaryVegetables = new ArrayList<>();
     private CulinaryVegetable culinaryVegetable = null;
     private String value = "";
 
