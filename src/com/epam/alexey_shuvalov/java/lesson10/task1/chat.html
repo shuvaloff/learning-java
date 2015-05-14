@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <title>CHAT</title>
+        <link rel="stylesheet" href="css/chat.css" type="text/css">
+        <script src="js/chat.js"></script>
+        <script src="js/engine.js"></script>
+    </head>
+    <body onload='checkAuth();'>
+        <script type="text/javascript">
+            if (window.addEventListener) {
+                window.addEventListener("storage", handleStorageChange, false);
+            } else {
+                window.attachEvent("onstorage", handleStorageChange);
+            }
+            function handleStorageChange(event) {
+                checkAuth();
+            }
+        </script>
+        <div id="chat">
+            <div id="toppanel">
+                <h1>Welcome</h1>
+                <ul id="top">
+                    <li id="system" class="roomtab active" onclick="alert('This is you.');"></li>
+                    <li id="logout" onclick="logout();">Quit</li>
+                </ul>
+            </div>
+            <div id="central">
+                <div id="userlist">
+                    <ul id="active_users">
+                    </ul>
+                </div>
+                <div id="messagespanel">
+                    <div id="messages">
+                        <div id="central_room" class="scrollbar">
+
+                        </div>
+                    </div>
+                    <div id="inputbox">
+                        <form name="chat_message" method="post">
+                            <textarea name="inputline" id="inputline" maxlength="100" onkeypress="if (event.keyCode === 13) {
+                                        sendMessage();
+                                        return false;
+                                    }"></textarea>
+                            <button type="button" value="Submit" class="send_button" onclick="sendMessage();">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

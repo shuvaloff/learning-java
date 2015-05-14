@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LOGIN</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/login.css" type="text/css">
+    </head>
+    <body>
+        <section id="loginBox">
+            <h2>LOGIN</h2>
+            <form name="login_form" id="login_form" method="post" class="minimal">
+                <label for="username">
+                    Type your username:
+                    <input type="text" name="username" id="username" autocomplete="off" placeholder="username" 
+                           pattern="[A-Za-z0-9_.@]{3,20}$" title="3 to 20 alpha-numeric characters or email." required/>
+                </label>
+                <button type="button" class="btn-minimal" id="login">
+                    CHAT NOW!
+                </button>
+            </form>
+        </section>
+    </body>
+</html>

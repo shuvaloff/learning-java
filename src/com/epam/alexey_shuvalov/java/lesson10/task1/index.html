@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LOGIN</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/login.css" type="text/css">
+        <script src="js/chat.js"></script>
+        <script src="js/engine.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function check(form) {
+                var inpObj = document.getElementById("username");
+                if ((form.username.value === "") ||
+                    (inpObj.validity.patternMismatch === true)) {
+                    document.getElementById('validate').click();
+                } else {
+                    if (!isActive(form.username.value)) {
+                        setCurrentUser(form.username.value);
+                        parent.location = 'chat.html';
+                    } else {
+                        alert("This user is already chatting. Please choose another one!");
+                    }
+                }
+            }
+        </script>
+        <section id="loginBox">
+            <h2>LOGIN</h2>
+            <form name="login_form" id="login_form" method="post" class="minimal">
+                <label for="username">
+                    Type your username:
+                    <input type="text" name="username" id="username" autocomplete="off" placeholder="username" 
+                           pattern="[A-Za-z0-9_.@]{3,20}$" title="3 to 20 alpha-numeric characters or email." required 
+                           onkeypress="if (event.keyCode === 13) {
+                                       document.getElementById('login').click();
+                                       return false;}"/>
+                </label>
+                <button type="button" class="btn-minimal" id="login" onclick="check(this.form);">
+                    CHAT NOW!
+                </button>
+                <input type="submit" class="btn-hidden" id="validate" value="SUBMIT">
+            </form>
+        </section>
+    </body>
+</html>

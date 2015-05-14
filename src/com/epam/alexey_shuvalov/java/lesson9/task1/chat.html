@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <title>CHAT</title>
+        <link rel="stylesheet" href="css/chat.css" type="text/css">
+    </head>
+    <body>
+        <div id="chat">
+            <div id="toppanel">
+                <h1>Welcome</h1>
+                <ul id="top">
+                    <li id="system" class="roomtab active">current user</li>
+                    <li id="logout">Quit</li>
+                </ul>
+            </div>
+            <div id="central">
+                <div id="userlist">
+                    <ul id="active_users">
+                        <li class="ouser">regular user</li>
+                        <li class="user">current user</li>
+                        <li class="admin">admin user</li>                        
+                    </ul>
+                </div>
+                <div id="messagespanel">
+                    <div id="messages">
+                        <div id="central_room" class="scrollbar">
+                            <div class="line system">
+                                <span class="timestamp">2015-01-01 00:00:00</span>
+                                <span class="message">system message.</span>
+                            </div>
+                            <div class="line">
+                                <span class="timestamp">2015-01-01 00:00:01</span>
+                                <span class="user">admin user</span>
+                                <span class="admin_message">message by admin user.</span>
+                            </div>
+                            <div class="line">
+                                <span class="timestamp">2015-01-01 00:00:02</span>
+                                <span class="user">current user</span>
+                                <span class="user_message">message by current user.</span>
+                            </div>
+                            <div class="line">
+                                <span class="timestamp">2015-01-01 00:00:03</span>
+                                <span class="user">regular user</span>
+                                <span class="ouser_message">message by regular user.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="inputbox">
+                        <form name="chat_message" method="post">
+                            <textarea name="inputline" id="inputline" maxlength="100"></textarea>
+                            <button type="button" value="Submit" class="send_button">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
